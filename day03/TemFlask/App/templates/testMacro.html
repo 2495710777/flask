@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    什么样的节奏最亚最摇摆
+    <!--这样定义控制台能看见 macro宏定义-->
+    {# 这样注释控制台也看不到 看不到 气你爸爸嚎#}
+
+    {# 无参的macro #}
+    {% macro say() %}
+        一经发现严惩不贷
+    {% endmacro %}
+
+    {{ say() }}
+    {{ say() }}
+    <hr>
+    {# 有参的macro #}
+    {% macro getUser(name,age) %}
+        {{ name }}的年龄是 {{ age }}
+    {% endmacro%}
+
+
+    {{ getUser('张三',18) }}
+        <hr>
+    {# 引入外部macro的两种方式 #}
+    {% from 'testMacro1.html' import getName %}
+    {{ getName('李瘸子') }}
+        <hr>
+    {% include 'testMacro1.html' %}
+    {{ getName('张唢呐') }}
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    说好不哭
+    <hr>
+    <ul>
+        {% for score in score_list %}
+            <li> {{ score }} </li>
+        {% endfor %}
+     </ul>
+    <hr>
+    <ul>
+        {% for score in score_list %}
+            {% if loop.first %}
+                    <li style="color:green"> {{ score }} </li>
+                {% elif loop.last %}
+                    <li style="color:red"> {{ score }} </li>
+                {% else %}
+                    <li style="color:blue"> {{ score }} </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        {% for score in score_list %}
+            {{ loop.index }}
+        {% endfor %}
+        {% for score in score_list %}
+            {{ loop.index0 }}
+        {% endfor %}
+     </ul>
+    <hr>
+    <ul>
+        {% for score in score_list %}
+            {{ loop.index }}
+        {% endfor %}
+        {% for score in score_list %}
+            {{ loop.index0 }}
+        {% endfor %}
+     </ul>
+    {% for score in score_list %}
+        {{ loop.revindex }}
+    {% endfor %}
+    {% for score in score_list %}
+        {{ loop.revindex0 }}
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    现在适合出去玩
+    <hr>
+    {{ code|upper}}
+    <hr>
+    {{ code|upper|lower }}
+    <hr>
+    {{ code1|trim|reverse }}
+    <hr>
+    {{ code2 }}<br>
+    {{ code2|striptags }}<br>
+    {{ code2|safe }}<br>
+    {% for i in code3 %}
+    <li>{{ loop.index0 }}:{{ loop.index1 }}:{{ i|lower|reverse}}</li>
+    {% endfor %}
+</body>
+</html>
