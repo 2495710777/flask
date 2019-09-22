@@ -1,0 +1,92 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block navbar %}
+    {{ super() }}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">演员 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">电影</a></li>
+
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">提交</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">登陆</a></li>
+                    <li><a href="#">注册</a></li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>红浪漫影城</h1>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">更多大片</a></p>
+        </div>
+    </div>
+    <table class="table" width="200" height="150">
+        <tr align="center">
+            <td class="active">电影</td>
+            <td class="success">导演</td>
+            <td class="warning">主演</td>
+            <td class="danger">时间</td>
+            <td class="info">简介</td>
+            <td class="active">时长</td>
+        </tr>
+        {% for movie in pagination.items %}
+            <tr align="center">
+                <td class="active">{{ movie.name }}</td>
+                <td class="success">{{movie.director}}</td>
+                <td class="warning">{{movie.starring}}</td>
+                <td class="danger">{{movie.showtime}}</td>
+                <td class="info">{{movie.brief}}</td>
+                <td class="active">{{movie.duration}}</td>
+        </tr>
+        {% endfor %}
+
+
+    </table>
+    {% if pagination.has_prev %}
+            <a href="{{ url_for('blue.bootstrapDemo') }}?page={{ pagination.prev_num }}" style="margin-left: 800px">上一页</a>
+        {% else %}
+            <a href='#' style="margin-left: 800px" >上一页</a>
+    {% endif %}
+
+    {% for p in pagination.iter_pages() %}
+        {% if p == page %}
+            <a href="{{ url_for('blue.bootstrapDemo') }}?page={{ p }}" class="btn-success">{{ p }}</a>
+        {% else %}
+            <a href="{{ url_for('blue.bootstrapDemo') }}?page={{ p }}" class="btn-danger">{{ p }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if pagination.has_next %}
+            <a href="{{ url_for('blue.bootstrapDemo') }}?page={{ pagination.next_num }}">下一页</a>
+        {% else %}
+            <a href='#'>下一页</a>
+    {% endif %}
+{% endblock %}

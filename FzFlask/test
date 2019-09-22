@@ -1,0 +1,17 @@
+数据库的环境
+    开发环境    假数据                     develop
+    测试环境    数据量大一些 假数据          test
+    演示环境    接近线上环境   实施工程师     show
+    线上环境    真实数据                   product
+
+
+class User()
+    name
+    age
+
+
+user = User()
+
+user.name
+user.age
+实例化某一个对象之后 那么这个对象就具备了该类的所有的属性和方法

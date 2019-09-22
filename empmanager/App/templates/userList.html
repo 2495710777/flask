@@ -1,0 +1,104 @@
+﻿<html>
+<head>
+    <title>emplist</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+</head>
+<body>
+<div id="wrap">
+    <div id="top_content">
+        <div id="header">
+            <div id="rightheader">
+                <p>
+                    2009/11/20
+                    <br/>
+                </p>
+            </div>
+            <div id="topheader">
+                <h1 id="title">
+                    <a href="#">Main</a>
+                </h1>
+            </div>
+            <div id="navigation">
+            </div>
+        </div>
+
+        <div id="content">
+            <p id="whereami">
+            </p>
+            <h1>
+                Welcome!
+            </h1>
+            <table class="table">
+                <tr class="table_header">
+                    <td>
+                        ID
+                    </td>
+                    <td>
+
+                        zs
+
+                    </td>
+                    <td>
+                        Gendar
+                    </td>
+                    <td>
+                        Age
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                {% for use in pagination.items %}
+                    <tr class="row1">
+                        <td>{{ use.id }}</td>
+                        <td><a href="{{ url_for('blue.userDetail') }}?id={{ use.id }}">
+                            {{ use.username }}
+                        </a>
+                        </td>
+                        <td>{{ use.sex }}</td>
+                        <td>{{ use.age }}</td>
+                        <td>
+                            <a href="{{ url_for('blue.delUser') }}?did={{ use.id }}">删除</a>
+                            <a href="{{ url_for('blue.toUpdateUser') }}?id={{ use.id }}">修改</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <input type="text" >
+            </table>
+            <p>
+                <input type="button" class="button" value="退出系统"
+                       onclick="location='{{ url_for('blue.login') }}'"/>
+
+                {% if pagination.has_prev %}
+                    <a href="{{ url_for('blue.userList') }}?page={{ pagination.prev_num }}" style="margin-left: 500px">上一页</a>
+                {% else %}
+                    <a href='#' style="margin-left: 500px">上一页</a>
+                {% endif %}
+
+                {% for p in pagination.iter_pages() %}
+                    {% if p == page %}
+                        <a href="{{ url_for('blue.userList') }}?page={{ p }}" class="btn-success">{{ p }}</a>
+                    {% else %}
+                        <a href="{{ url_for('blue.userList') }}?page={{ p }}" class="btn-danger">{{ p }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if pagination.has_next %}
+                    <a href="{{ url_for('blue.userList') }}?page={{ pagination.next_num }}">下一页</a>
+                {% else %}
+                    <a href='#'>下一页</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer_bg">
+            ABC@126.com
+        </div>
+    </div>
+</div>
+</body>
+</html>
